@@ -1,25 +1,9 @@
-import { Form, Input, Button, Checkbox, Alert } from 'antd';
-import axios from 'axios';
+import { Form, Input, Button, Checkbox } from 'antd';
 import React from 'react';
 import './FormLogin.css';
-
-const  Login = () => {
+const Login = () => {
     const onFinish = (values) => {
         console.log('Success:', values);
-        axios.post("http://localhost:4000/login",null, {headers: {
-            useridlogin : values.username,
-            passwordlogin : values.password
-        }}).then(res => {
-            if(res.data.role){
-                console.log("Đăng nhập thành công")
-                localStorage.setItem("token",res.data.token)
-                localStorage.setItem("role",res.data.role)
-            }
-            else{
-                console.log("Đăng nhập thất bại")
-            }
-        })
-    
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -92,6 +76,7 @@ const  Login = () => {
                 </Form.Item>
             </Form>
         </div>
+
     );
 };
 

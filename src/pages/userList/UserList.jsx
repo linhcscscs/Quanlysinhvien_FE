@@ -3,45 +3,46 @@ import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 import { userRows } from "../../dummyData";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+// const loginInfo = require ("../../loginInfo");
+import { loginInfo, role } from "../../loginInfo";
 import {
     EditFilled
 } from '@ant-design/icons';
+import axios from "axios";
 
 export default function UserList() {
-    const [data, setData] = useState(userRows);
-
-    const handleDelete = (id) => {
-
-        setData(data.filter((item) => item.id !== id));
+    const [data, setData] = useState([]);
+    useEffect(() =>{axios.get(`http://localhost:4000/${role()}/qlsv/user/`, {headers: loginInfo()})
+    .then(res => setData(res.data));
+console.log(data);},[])
+        
+    
+    const handleDelete = (_id) => {
+        setData(data.filter((item) => item._id !== _id));
     };
 
     const columns = [
-        { field: "id", headerName: "STT", width: 150 },
-        { field: "msv", headerName: "MSV", width: 130 },
+        { field: "_id", headerName: "STT", width: 150 },
+        { field: "userid", headerName: "MSV", width: 130 },
         {
-            field: "user",
+            field: "name",
             headerName: "Họ tên",
             width: 200,
             renderCell: (params) => {
                 return (
                     <div className="userListUser">
-                        <img className="userListImg" src={params.row.avatar} alt="" />
-                        {params.row.username}
+                        {/* <img className="userListImg" src={params.row.avatar} alt="" /> */}
+                        {params.row.name}
                     </div>
                 );
             },
         },
-        { field: "birthday", headerName: "Ngày sinh", width: 150 },
+        { field: "dob", headerName: "Ngày sinh", width: 150 },
         {
-            field: "addres",
+            field: "address",
             headerName: "Địa chỉ",
             width: 200,
-        },
-        {
-            field: "MK",
-            headerName: "Khoá học",
-            width: 150,
         },
         {
             field: "action",
@@ -50,12 +51,12 @@ export default function UserList() {
             renderCell: (params) => {
                 return (
                     <>
-                        <Link to={"/user/" + params.row.id}>
+                        <Link to={"/user/" + params.row._id}>
                             <EditFilled className="userListEdit" />
                         </Link>
                         <DeleteOutline
                             className="userListDelete"
-                            onClick={() => handleDelete(params.row.id)}
+                            onClick={() => handleDelete(params.row._id)}
                         />
                     </>
                 );
@@ -75,7 +76,7 @@ export default function UserList() {
                 disableSelectionOnClick
                 columns={columns}
                 pageSize={50}
-
+                getRowId ={(row) => row._id}
             />
         </div>
 

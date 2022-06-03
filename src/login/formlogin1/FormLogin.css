@@ -1,0 +1,11 @@
+@import 'antd/dist/antd.css';
+
+.login {
+    text-align: center;
+    display: flex;
+    min-width: 30%;
+    margin-top: 5%;
+    margin-left: 20%;
+    justify-content: center;
+    border: 1px;
+}

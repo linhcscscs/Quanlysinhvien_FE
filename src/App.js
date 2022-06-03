@@ -1,4 +1,3 @@
-
 import "./App.css";
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -14,14 +13,18 @@ function App() {
         {/* <ListData /> */}
         {/* <NewUserList /> */}
         <Routes>
-          <Route path="/login" element={< Login />} >
-
-          </Route>
+          <Route
+            path="/login"
+            element={
+              <React.Fragment>
+                <Login />
+              </React.Fragment>
+            }
+          ></Route>
         </Routes>
         <Homeadmin />
-      </BrowserRouter >
+      </BrowserRouter>
     </div>
-
   );
 }
 
