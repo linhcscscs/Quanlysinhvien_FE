@@ -24,6 +24,7 @@ export default function Topbar() {
                     <Link to="/taikhoan"><img src="https://images.pexels.com/photos/1526814/pexels-photo-1526814.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" className="topAvatar" /></Link>
                     <div className="topbarIconContainer" >
                         <div className="IconLogout">
+                            {localStorage.clear()}
                             <a href="/login" ><LogoutOutlined /></a>
                         </div>
 

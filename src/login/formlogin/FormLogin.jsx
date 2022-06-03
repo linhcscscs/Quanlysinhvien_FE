@@ -14,12 +14,18 @@ const  Login = () => {
                 console.log("Đăng nhập thành công")
                 localStorage.setItem("token",res.data.token)
                 localStorage.setItem("role",res.data.role)
+                alert("Đăng nhập thành công.");
             }
             else{
                 console.log("Đăng nhập thất bại")
+                alert("Đăng nhập thất bại");
             }
         })
-    
+        .catch(err =>{
+                console.log("Đăng nhập thất bại")
+                alert(`Đăng nhập thất bại
+                    Lỗi : ${err}`);
+            })
     };
 
     const onFinishFailed = (errorInfo) => {
