@@ -1,4 +1,6 @@
 import "./UserList.css";
+import {EditFilled} from '@ant-design/icons';
+import axios from "axios";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 import { userRows } from "../../dummyData";
@@ -6,14 +8,13 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 // const loginInfo = require ("../../loginInfo");
 import { loginInfo, role } from "../../loginInfo";
-import {
-    EditFilled
-} from '@ant-design/icons';
-import axios from "axios";
+
+
+
 
 export default function UserList() {
         const [data, setData] = useState([]);
-        useEffect(() =>{axios.get(`http://localhost:4000/${role()}/qlsv/user/`, {headers: loginInfo()})
+        useEffect(() =>{axios.get(`https://datn1861030013qlsv.herokuapp.com/${role()}/qlsv/user/`, {headers: loginInfo()})
         .then(res => setData(res.data));
 ;},[])
             
